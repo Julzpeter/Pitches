@@ -1,24 +1,9 @@
 from flask import render_template,redirect,url_for,flash,request
 from . import auth
-from flask_login import login_user,logout_user,login_required
-from .forms import RegistrationForm,LoginForm
-from .. import db
 from ..models import User
-
-
-
-def create_app(config_name):
-    #....
-    #Initializing Flask Extensions
-    bootstrap.init_app(app)
-    db.init_app(app)
-    
-
-
-# @auth.route('/login')
-# def login():
-#     return render_template('auth/login.html')
-
+from .forms import RegistrationForm, LoginForm
+from .. import db
+from flask_login import login_user,logout_user,login_required
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -31,9 +16,16 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "watchlist login"
-    return render_template('auth/login.html', login_form=login_form, title=title)
+    title = "pitch login"
+    return render_template('auth/login.html',title=title,login_form=login_form)
 
+
+# def create_app(config_name):
+    #....
+    #Initializing Flask Extensions
+    # bootstrap.init_app(app)
+    # db.init_app(app)
+      
 @auth.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
@@ -45,7 +37,6 @@ def register():
         return redirect(url_for('auth.login'))
         title = "New Account"
     return render_template('auth/register.html', registration_form=form)
-
 
 
 @auth.route('/logout')
