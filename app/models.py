@@ -60,10 +60,11 @@ class User(db.Model):
             raise AttributeError('You cannot read the password attribute')
 
     @password.setter
-        def password(self, password):
+
+    def password(self, password):
             self.pass_secure = generate_password_hash(password)
 
-            def verify_password(self, password):
+    def verify_password(self, password):
             return check_password_hash(self.pass_secure, password)
 
 
