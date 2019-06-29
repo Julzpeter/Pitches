@@ -1,9 +1,11 @@
-from flask import render_template,redirect,url_for,flash,request
 from . import auth
-from ..models import User
-from .forms import RegistrationForm, LoginForm
 from .. import db
-from flask_login import login_user,logout_user,login_required
+from flask import render_template, redirect, url_for, flash, request
+from flask_login import login_user, logout_user, login_required
+from ..models import User
+from .forms import LoginForm, RegistrationForm
+from ..email import mail_message
+
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
@@ -16,16 +18,10 @@ def login():
 
         flash('Invalid username or Password')
 
-    title = "pitch login"
-    return render_template('auth/login.html',title=title,login_form=login_form)
+    title = "pitches login"
+    return render_template('auth/login.html', login_form=login_form, title=title)
 
 
-# def create_app(config_name):
-    #....
-    #Initializing Flask Extensions
-    # bootstrap.init_app(app)
-    # db.init_app(app)
-      
 @auth.route('/register', methods=["GET", "POST"])
 def register():
     form = RegistrationForm()
@@ -34,8 +30,10 @@ def register():
                     username=form.username.data, password=form.password.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('auth.login'))
+        mail_message("Welcome to watchlist",
+                     "email/welcome_user", user.email, user=user)
         title = "New Account"
+        return redirect(url_for('auth.login'))
     return render_template('auth/register.html', registration_form=form)
 
 

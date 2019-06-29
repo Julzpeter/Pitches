@@ -49,6 +49,12 @@ class Pitch(UserMixin, db.Model):
    ## pitch = db.relationship("Comment", backref="user_pitch", lazy="dynamic")
     posted_by = db.Column(db.String)
 
+    def save_review(self):
+        db.session.add(self)
+        db.session.commit()
+
+   
+
     def __repr__(self):
         return f'User {self.username}'
 

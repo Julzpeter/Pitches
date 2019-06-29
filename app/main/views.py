@@ -2,8 +2,8 @@ from flask import render_template,request,redirect,url_for,abort
 from . import main
 from ..request import get_movies,get_movie,search_movie
 from .forms import ReviewForm, UpdateProfile
-from ..models import Review, User
-from flask_login import login_required
+from ..models import  User, Pitch
+from flask_login import login_required,current_user
 from .. import db,photos
 
 
@@ -85,7 +85,7 @@ def profile(uname):
     return render_template("profile/profile.html", user=user)
 
 
-@main.route('/user/<uname>/update/pic', methods=['GET', 'POST'])
+@main.route('/user/<uname>/update/', methods=['GET', 'POST'])
 @login_required
 def update_profile(uname):
     user = User.query.filter_by(username=uname).first()
