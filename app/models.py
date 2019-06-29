@@ -46,7 +46,7 @@ class Pitch(UserMixin, db.Model):
     posted_at = db.Column(db.DateTime, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
     category = db.Column(db.String(255))
-    pitch = db.relationship("Comment", backref="user_pitch", lazy="dynamic")
+   ## pitch = db.relationship("Comment", backref="user_pitch", lazy="dynamic")
     posted_by = db.Column(db.String)
 
     def __repr__(self):
