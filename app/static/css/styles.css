@@ -1,14 +1,32 @@
-.pitchit-form{
-    box-shadow: 2px 4px 12px 2px #dcdcdc;
-    margin-top: 5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: 'Mukta';
-    
+.welcome-page {
+    padding: 0;
+    margin: 0;
+    background-size: cover; 
 }
-#h3{
+.welcome {
+    text-align: center;
+    padding-top: 15rem;
+    padding-bottom: 22rem;
+}
+.welcome h1 {
+    font-family: 'Bilbo Swash Caps';
+    font-size: 150px;
     color: white;
 }
 
+.welcome h2 {
+    font-family: 'Cinzel';
+    font-size: 30px;
+    color: white;
+}
+h3{
+    color: white;
+}
+.welcome a {
+    font-family: 'Mukta';
+    width: 140px;
+}
 
-
+.welcome a:hover {
+    color: white;
+}
