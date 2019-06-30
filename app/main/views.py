@@ -60,10 +60,4 @@ def update_pic(uname):
 
 
 
-@main.route('/category/<cat>')
-def category(cat):
-    my_category = Pitch.get_category(cat)
 
-    title = f'{cat} category | One Minute Pitch'
-
-    return render_template('category.html', title=title, category=my_category)

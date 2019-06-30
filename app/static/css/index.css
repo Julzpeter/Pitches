@@ -3,18 +3,16 @@ li {
     padding: 20px;
 }
 
-h3 {
+h1 {
     color: brown;
     text-align: center;
     padding: 20px;
 }
-
-body {
-    background-color: #000a12;
-}
-.welcome-page{
-    background-image: url(/app/static/photos/window.jpg);
-}
-.karibu{
+.karibu h1{
     text-align: center;
+    color: white;
+}
+.karibu h2{
+    color: white;
+    
 }

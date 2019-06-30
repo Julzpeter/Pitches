@@ -41,6 +41,20 @@ class Pitch(UserMixin,db.Model):
     pitch_category = db.Column(db.String(255))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
+    def save_pitch(self):
+        db.session.add(self)
+        db.session.commit()
+
+  
+
+
+
+
+
+                        
+
+
+
     
    
 

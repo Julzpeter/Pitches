@@ -1,40 +1,14 @@
-.welcome h2 {
-    font-size: 30px;
-    color: white;
-}
-.welcome-page{
-    font-family: 'Tangerine';
-    border: 2px solid #dcdcdc;
-    border-radius: 10px;
-
-}
-.pitch-form{
-    box-shadow: 6px 6px 12px 6px #dcdcdc;
-    margin-top: 5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-    font-family: 'Mukta';
-}
-.pitch-form h3{
-    display: flex;
-    justify-content: center;
-    font-family: 'Mukta';
-}
-.about {
-    margin-top: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
-}
-.picture img {
-    border-radius: 50px;
-}
 .pitchit-form{
     box-shadow: 2px 4px 12px 2px #dcdcdc;
     margin-top: 5rem;
     padding-top: 1rem;
     padding-bottom: 1rem;
     font-family: 'Mukta';
-    border: 4px solid #dcdcdc;
-    border-radius: 10px;
     
 }
+#h3{
+    color: white;
+}
+
+
+
