@@ -15,3 +15,6 @@ body {
 .welcome-page{
     background-image: url(/app/static/photos/window.jpg);
 }
+.karibu{
+    text-align: center;
+}
