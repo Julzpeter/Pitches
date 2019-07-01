@@ -32,9 +32,7 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
             return check_password_hash(self.pass_secure, password)
 
-    @login_manager.user_loader
-    def load_user(user_id):
-        return User.query.get(int(user_id))
+   
 
 class Pitch(UserMixin,db.Model):
     __tablename__ = 'pitches'
@@ -62,6 +60,30 @@ class Pitch(UserMixin,db.Model):
     def display_user(self):
             if Pitch.user_id == User.id:
                     return User.username
+
+class Comment(db.Model):
+        __tablename__ = 'comments'
+        id = db.Column(db.Integer,primary_key = True)
+        user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+        pitch_id = db.Column(db.Integer,db.ForignKey(pitch.id))
+        pitch_comment = db.Column(db.Text)
+        posted = db.Column(db.DateTime,default=datetime.utcnow)
+
+        def save_commen(self):
+                db.session.add(self)
+                db.session.commit()
+
+        @classmethod
+        def get_comment(pitch_id):
+                comment=Comment.query.filter_by(pitch_id=id)
+                return comment
+
+        @login_manager.user_loader
+        def load_user(username):
+        return User.query.get(int(username))
+
+
+        
 
                         
 
