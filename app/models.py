@@ -42,6 +42,7 @@ class Pitch(UserMixin,db.Model):
     pitch_category = db.Column(db.String(255))
     posted_at = db.Column(db.DateTime,index=True,default=datetime.utcnow())
     comments = db.relationship('Comment',backref='post',lazy='dynamic')
+    
 
     def save_pitch(self):
              db.session.add(self)
@@ -53,7 +54,7 @@ class Pitch(UserMixin,db.Model):
               return pitches
               
 
-    def get_pitches(self):
+    def get_pitch(self):
              pitch = Pitch.query.filter_by(id)
              return pitch
 
@@ -65,7 +66,7 @@ class Comment(db.Model):
         __tablename__ = 'comments'
         id = db.Column(db.Integer,primary_key = True)
         user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-        pitch_id = db.Column(db.Integer,db.ForignKey(pitch.id))
+        pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
         pitch_comment = db.Column(db.Text)
         posted = db.Column(db.DateTime,default=datetime.utcnow)
 
@@ -80,7 +81,10 @@ class Comment(db.Model):
 
         @login_manager.user_loader
         def load_user(username):
-        return User.query.get(int(username))
+
+                return User.query.get(int(username))
+
+        
 
 
         
