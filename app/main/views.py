@@ -1,7 +1,7 @@
 from flask import render_template,request,redirect,url_for,abort
 from . import main
 from .forms import ReviewForm, UpdateProfile,PostPitchForm,PostCommentForm
-from ..models import  User, Pitch
+from ..models import  User, Pitch,Comment
 from flask_login import login_required,current_user
 from .. import db,photos
 import markdown2 
@@ -19,17 +19,17 @@ def index():
 
     form = PostPitchForm()
     if form.validate_on_submit():
-        category = form.category.data
+        pitch_category = form.pitch_category.data
         pitch = form.text.data
 
         #Updated post
-        new_pitch = Post(category=category,text=pitch,user=current_user)
+        new_pitch = Pitch(pitch_category=pitch_category,text=pitch,user=current_user)
 
         #save pitch method
         new_pitch.save_pitch()
         return  redirect(url_for('main.index'))
 
-    return render_template('index.html', title=title, pitches=pitches)
+    return render_template('index.html', title=title, pitch_form=form,pitches=pitches)
 
     
 

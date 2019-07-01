@@ -15,7 +15,7 @@ class UpdateProfile(FlaskForm):
 
 
 class PostPitchForm(FlaskForm):
-    category = SelectField('Select the category', choices=[('Religion', 'Religion'), ('General', 'General'), ('Educative', 'Educative'), ('Inspirational', 'Inspirational')])
+    pitch_category = SelectField('Select the pitch_category', choices=[('Religion', 'Religion'), ('General', 'General'), ('Educative', 'Educative'), ('Inspirational', 'Inspirational')])
     text = TextAreaField('Type your pitch')
     submit = SubmitField('Post')
 
