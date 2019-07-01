@@ -8,7 +8,7 @@ import markdown2
 
 
 # Views
-@main.route('/')
+@main.route('/', methods = ['GET','POST'])
 def index():
 
     '''
@@ -17,6 +17,8 @@ def index():
     title = 'Pitch| Home'
     pitches = Pitch.query.all()
     return render_template('index.html', title=title, pitches=pitches)
+
+    
 
 @main.route('/user/<uname>')
 def profile(uname):
