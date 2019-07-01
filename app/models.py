@@ -15,6 +15,8 @@ class User(UserMixin, db.Model):
     pass_secure = db.Column(db.String(255))
     bio = db.Column(db.String(255))
     profile_pic_path = db.Column(db.String())
+    pitch = db.relationship('Pitch', backref='user',lazy='dynamic')
+    comments = db.relationship('Comment',backref = 'user',lazy='dynamic')
 
     def __repr__(self):
         return f'User {self.username}'
@@ -37,13 +39,68 @@ class User(UserMixin, db.Model):
 class Pitch(UserMixin,db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer, primary_key=True)
-    pitch_content = db.Column(db.String())
-    pitch_category = db.Column(db.String(255))
+    text=db.Column(db.Text())
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    pitch_category = db.Column(db.String(255))
+    posted_at = db.Column(db.DateTime,index=True,default=datetime.utcnow())
+    comments = db.relationship('Comment',backref='post',lazy='dynamic')
 
     def save_pitch(self):
-        db.session.add(self)
-        db.session.commit()
+             db.session.add(self)
+             db.session.commit()
+               
+
+    def get_pitches(self):
+              pitches = Pitch.query.all()
+              return pitches
+              
+
+    def get_pitches(self):
+             pitch = Pitch.query.filter_by(id)
+             return pitch
+
+    def display_user(self):
+            if Pitch.user_id == User.id:
+                    return User.username
+
+                        
+
+               
+
+        
+                
+
+            
+                   
+
+
+
+        
+
+
+
+        
+        
+
+
+   
+
+           
+           
+
+    
+            
+            
+
+     
+
+
+  
+
+   
+
+
+
 
   
 
