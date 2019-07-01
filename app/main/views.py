@@ -39,6 +39,7 @@ def profile(uname):
 
     if user is None:
         abort(404)
+        
         posted_pitches = Post.query.filter_by(user_id=current_user.id).all()
 
 
