@@ -14,7 +14,7 @@
 {% for comment in all_comments %}
 
 <p style='border:1px solid grey;border-radius:4px;padding:10px;'>
-    ﹅ <strong>{{comment.pitch_comment}}</strong><br>posted at {{comment.posted}}
+    ﹅ <strong>{{comment.pitch_comment}}</strong><br>posted at {{ comment.posted.strftime('%Y-%m-%d') }}
 </p>
 
 {%endfor%}
