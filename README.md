@@ -2,7 +2,11 @@
 ## Description
 This is an application that allows a user to submit their one minute pitches and other users will leave comments to give their feedback on them
 ## Author
+<<<<<<< HEAD
 Jliet Koech
+=======
+Juliet Koech
+>>>>>>> dcacf6059c1f677173141e733bb9badfabfb0be8
 
 ## Date made
 29/6/2019
@@ -12,6 +16,7 @@ Jliet Koech
 * User can upload a profile pic and image at the profile page
 * User can log out when done
 
+<<<<<<< HEAD
 ## Using the application
 * You require a minimum python version 3.6 to run the application
 * Clone the repository and get to install flask using git clone
@@ -24,6 +29,21 @@ Jliet Koech
 
 
 
+=======
+## Getting Started
+* You require a minimum python version 3.6 to run the application
+* Clone or download the Repo
+* Read the specs and requirements files and Install all the requirements.
+* Edit the start.sh file with your api key from the news.org website
+* Run chmod a+x start.py
+* Run ./start.py
+* Access the application through localhost:5000
+* Deploying to heroku make sure you have requirements.txt
+
+## creating a virtual environment
+* python3.7 -m venv --without-pip virtual
+* source virtual/bin/activate
+>>>>>>> dcacf6059c1f677173141e733bb9badfabfb0be8
 
 # BDD
 
