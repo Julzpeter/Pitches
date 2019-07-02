@@ -78,6 +78,17 @@ def update_pic(uname):
 @main.route('/pitches/<int:id>', methods=['GET', 'POST'])
 def pitch(id):
     pitch = Pitch.get_pitch(id)
+    if request.args.get("like"):
+        pitch.likes = pitch.likes + 1
+        db.session.add(pitch)
+        db.session.commit()
+        return redirect("/pitches/{pitch_id}".format(pitches_id=pitch_id))
+
+    elif request.args.get("dislike"):
+        pitch.dislikes = pitch.dislikes + 1
+        db.session.add(pitch)
+        db.session.commit()
+        return redirect("/pitches/{pitch_id}".format(pitches_id=pitch_id))
 
     comment_form=PostCommentForm()
     if comment_form.validate_on_submit():
@@ -86,6 +97,13 @@ def pitch(id):
         new_comment.save_comment()
     comments = Comment.get_comment(pitch)
     return render_template('pitch.html', pitch=pitch, comment_form=comment_form,comments=comments)
+
+
+        # comment_form = PostCommentForm()
+        # if comment_form.validate_on_submit():
+        #     comment=comment_form.text.data
+        #     new_comment = Comment(comment=comment,user = current_user.pitches_id= pitch)
+        #
 
 
     # #getting comments for a pitch

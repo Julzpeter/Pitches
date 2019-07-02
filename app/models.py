@@ -48,6 +48,8 @@ class Pitch(UserMixin,db.Model):
     pitch_category = db.Column(db.String(255))
     posted_at = db.Column(db.DateTime,index=True,default=datetime.utcnow())
     comments = db.relationship('Comment',backref='pitch_id',lazy='dynamic')
+    likes=db.Column(db.Integer)
+    dislikes=db.Column(db.Integer)
 
 
     def save_pitch(self):
@@ -67,6 +69,16 @@ class Pitch(UserMixin,db.Model):
     def display_user(self):
             if Pitch.user_id == User.id:
                     return User.username
+
+    @classmethod
+    def count_pitch(cls,username):
+        user = User.query.filter_by(username=uname).first()
+        pitch = Pitch.query.filter_by(user_id=user.id).all()
+
+        pitch_count= 0
+        for pitch in pitches:
+            pitch_count +=1
+        return pitch_count
 
 class Comment(db.Model):
         __tablename__ = 'comments'
