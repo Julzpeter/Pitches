@@ -15,7 +15,6 @@ Juliet Koech
 * User can upload a profile pic and image at the profile page
 * User can log out when done
 
-<<<<<<< HEAD
 ## Using the application
 * You require a minimum python version 3.6 to run the application
 * Clone the repository and get to install flask using git clone
