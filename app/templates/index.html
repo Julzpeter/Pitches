@@ -19,16 +19,31 @@
 #     <title>Pitch</title>
 #     {% endif %}
 {% block content %}
+
 <div class = "container">
     <h1 class = "text-center" > Welcome </h1>
     <h2 class = "text-center" > One Minute Pitch </h2>
+
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-10"><br><br>
+            {% if current_user.is_authenticated %}
+            <h3 style="text-align: center;">Write a new Pitch</h3>
+            {{wtf.quick_form(pitch_form)}}
+            {% else %}
+            <h4>Please sign up an account to also post a pitch</h4>
+            {% endif %}
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <div style="margin:30px;border:1px solid black;border-radius:5px;"></div>
+</div>
 
     <div class = "row" >
         <div class = "col-md-1" > </div >
         <div class = "col-md-10" >
             <hr >
-            <h3 class = "text-center" style = "color:white;background-color: black;padding:10px;border-radius: 5px;" > Choose
-                the category you like < /h3 >
+            <h3 class = "text-center" style = "color:white;background-color: black;padding:10px;border-radius: 5px;"> Choose the category you like </h3>
             <br >
             <br >
             <br >
@@ -36,7 +51,7 @@
                 <div class = "col-md-6" >
                     <button
                         style = "color:white;background-color: black;margin-bottom:10px;width:100%;text-align: center" >
-                        ⚙ General < /button>
+                        ⚙ General </button>
                     <div class = "row card">
                     <div class = 'container-fluid text-center'>
                         {% for pitch in pitches %}
@@ -46,6 +61,7 @@
                             {% endif %}
                             <p class = "card-body">{{pitch.text}}</p>
                             <small class = "card-footer">Posted on {{pitch.posted_at}}</small>
+                            <a href="/pitches/{{pitch.id}}">Go to Pitch</a>
                             <hr>
                             {% endfor %}
                         </div>
@@ -65,6 +81,7 @@
                             {% endif %}
                             <p class = "card-body"> {{pitch.text}} </p>
                             <small class = "card-footer"> Posted on{{pitch.posted_at}}</small>
+                            <a href="/pitches/{{pitch.id}}">Go to Pitch</a>
                             <hr>
                             {% endfor %}
                         </div>
@@ -72,7 +89,6 @@
                 </div>
             </div>
 
-            <div class = "container" style = "padding-top: 50px">
                 <div class = "col-md-6">
                     <button
                         style = "color:white;background-color: black;margin-bottom:10px;width:100%;text-align: center" >
@@ -82,56 +98,22 @@
                         {% for pitch in pitches %}
                         {% if pitch.category == 'Religion' %}
                         <div class = "co">
-                            <a href = "/pitches/{{pitch.id}}">{{pitch.category}} </a>
+                          <a href = "/pitches/{{pitch.id}}">{{pitch.category}} </a>
                         </div >
                         {% endif %}
                         <p class = "card-body"> {{pitch.text}} </p>
                         <small class = "card-footer" > Posted on {{pitch.posted_at}} </h6>
+                          <a href="/pitches/{{pitch.id}}">Go to Pitch</a>
                         <hr>
-                        {% endfor %} 
+                        {% endfor %}
                     </div>
                 </div>
 
-            <div class = "col-md-6">
-                    <button
-                        style = "color:white;background-color: black;margin-bottom:10px;width:100%;text-align: center">
-                        ⚙ Inspirational</button>
-                    <div class = "row card">
-                    <div class = "container-fluid text-center">
-                        {% for pitch in pitches %}
-                        {% if pitch.category == 'Educative' %}
-                        <div class = "co">
-                            <a href = "/pitches/{{pitch.id}}" > {{pitch.category}}</a>
-                            {% endif %}
-                            <p class = "card-body">{{pitch.text}}</p>
-                            <small class = "card-footer"> Posted on {{pitch.posted_at}}< /small>
-                            <hr>
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
-            </div>
+
     </div>
-    
 
 
 
-    <div class="row">
-        <div class="col-md-1"></div>
-        <div class="col-md-10"><br><br>
-            {% if current_user.is_authenticated %}
-            <h3 style="text-align: center;">Write a new Pitch</h3>
-            {{wtf.quick_form(pitch_form)}}
-            {% else %}
-            <h4>Please sign up an account to also post a pitch</h4>
-            {% endif %}
-        </div>
-        <div class="col-md-1"></div>
-    </div>
-    <div style="margin:30px;border:1px solid black;border-radius:5px;"></div>
-</div>
+
+
 {% endblock %}
-
-
-
- 

@@ -1,19 +1,29 @@
 # PITCH
 ## Description
 This is an application that allows a user to submit their one minute pitches and other users will leave comments to give their feedback on them
+## Author
+Jliet Koech
+
+## Date made
+29/6/2019
 
 ## Features
 * User can register or login if he h/she had not
 * User can upload a profile pic and image at the profile page
 * User can log out when done
 
-## Getting Started
-* Clone or download the Repo
-* Read the specs and requirements files and Install all the requirements.
+## Using the application
+* You require a minimum python version 3.6 to run the application
+* Clone the repository and get to install flask using git clone
+* Run the application
+* Click on the link on the terminal as you press ctrl and use the application in the browser
 * Edit the start.sh file with your api key from the news.org website
 * Run chmod a+x start.py
 * Run ./start.py
-* Access the application through localhost:5000
+* Access the application through localhost:500
+
+
+
 
 # BDD
 
@@ -30,4 +40,3 @@ This is an application that allows a user to submit their one minute pitches and
 
 ## Bugs
 If you encounter any bags feel free to email me at chepngetichjuliet@gmail.com
-

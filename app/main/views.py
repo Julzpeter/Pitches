@@ -4,7 +4,7 @@ from .forms import ReviewForm, UpdateProfile,PostPitchForm,PostCommentForm
 from ..models import  User, Pitch,Comment
 from flask_login import login_required,current_user
 from .. import db,photos
-import markdown2 
+import markdown2
 
 
 # Views
@@ -31,7 +31,7 @@ def index():
 
     return render_template('index.html', title=title, pitch_form=form,pitches=pitches)
 
-    
+
 
 @main.route('/user/<uname>')
 def profile(uname):
@@ -39,7 +39,7 @@ def profile(uname):
 
     if user is None:
         abort(404)
-        
+
         posted_pitches = Post.query.filter_by(user_id=current_user.id).all()
 
 
@@ -77,26 +77,30 @@ def update_pic(uname):
 
 @main.route('/pitches/<int:id>', methods=['GET', 'POST'])
 def pitch(id):
-    #getting comments for a pitch
-    all_comments = Comment.query.filter_by(post_id=id).all()
+    pitch = Pitch.get_pitch(id)
 
-    pitch = Post.query.filter_by(id=id).first()
-    form = PostCommentForm()
-    #from for comments
-    if form.validate_on_submit():
-        comment = form.comment.data
-
-        new_comment = Comment(pitch_comment=comment,
-                              user=current_user, post_id=id)
-        db.session.add(new_comment)
-        db.session.commit()
-        return redirect(url_for('main.pitch', id=pitch.id))
-
-    return render_template('pitches.html', pitch=pitch, comment_form=form, all_comments=all_comments)
+    comment_form=PostCommentForm()
+    if comment_form.validate_on_submit():
+        comment=comment_form.comment.data
+        new_comment = Comment(pitch_comment=comment,user=current_user,pitch_id=pitch)
+        new_comment.save_comment()
+    comments = Comment.get_comment(pitch)
+    return render_template('pitch.html', pitch=pitch, comment_form=comment_form,comments=comments)
 
 
-
-
-
-
-
+    # #getting comments for a pitch
+    # all_comments = Comment.query.filter_by(pitch_id=id).all()
+    #
+    # pitch = Post.query.filter_by(id=id).first()
+    # form = PostCommentForm()
+    # #from for comments
+    # if form.validate_on_submit():
+    #     comment = form.comment.data
+    #
+    #     new_comment = Comment(pitch_comment=comment,
+    #                           user=current_user, post_id=id)
+    #     db.session.add(new_comment)
+    #     db.session.commit()
+    #     return redirect(url_for('main.pitch', id=pitch.id))
+    #
+    #

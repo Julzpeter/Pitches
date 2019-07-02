@@ -4,6 +4,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import login_manager
 from datetime import datetime
 
+@login_manager.user_loader
+def load_user(username):
+    return User.query.get(int(username))
+
+
+
 
 
 
@@ -18,8 +24,6 @@ class User(UserMixin, db.Model):
     pitch = db.relationship('Pitch', backref='user',lazy='dynamic')
     comments = db.relationship('Comment',backref = 'user',lazy='dynamic')
 
-    def __repr__(self):
-        return f'User {self.username}'
 
     @property
     def password(self):
@@ -32,7 +36,9 @@ class User(UserMixin, db.Model):
     def verify_password(self, password):
             return check_password_hash(self.pass_secure, password)
 
-   
+    def __repr__(self):
+        return f'User {self.username}'
+
 
 class Pitch(UserMixin,db.Model):
     __tablename__ = 'pitches'
@@ -41,21 +47,21 @@ class Pitch(UserMixin,db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     pitch_category = db.Column(db.String(255))
     posted_at = db.Column(db.DateTime,index=True,default=datetime.utcnow())
-    comments = db.relationship('Comment',backref='post',lazy='dynamic')
-    
+    comments = db.relationship('Comment',backref='pitch_id',lazy='dynamic')
+
 
     def save_pitch(self):
              db.session.add(self)
              db.session.commit()
-               
 
+    @classmethod
     def get_pitches(self):
               pitches = Pitch.query.all()
               return pitches
-              
 
-    def get_pitch(self):
-             pitch = Pitch.query.filter_by(id)
+    @classmethod
+    def get_pitch(cls,id):
+             pitch = Pitch.query.filter_by(id=id).first()
              return pitch
 
     def display_user(self):
@@ -68,105 +74,13 @@ class Comment(db.Model):
         user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
         pitches_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
         pitch_comment = db.Column(db.Text)
-        posted = db.Column(db.DateTime,default=datetime.utcnow)
 
-        def save_commen(self):
+
+        def save_comment(self):
                 db.session.add(self)
                 db.session.commit()
 
         @classmethod
-        def get_comment(pitch_id):
-                comment=Comment.query.filter_by(pitch_id=id)
-                return comment
-
-        @login_manager.user_loader
-        def load_user(username):
-
-                return User.query.get(int(username))
-
-        
-
-
-        
-
-                        
-
-               
-
-        
-                
-
-            
-                   
-
-
-
-        
-
-
-
-        
-        
-
-
-   
-
-           
-           
-
-    
-            
-            
-
-     
-
-
-  
-
-   
-
-
-
-
-  
-
-
-
-
-
-                        
-
-
-
-    
-   
-
-  
-
-   
-
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
+        def get_comment(cls,pitches_id):
+                comments=Comment.query.filter_by(pitch_id=pitches_id).all()
+                return comments

@@ -19,9 +19,15 @@
 
 {%endfor%}
 <br>
-
-{{wtf.quick_form(comment_form)}}
+<div class="row">
+        <hr>
+        {% if current_user.is_authenticated %}
+        {{ wtf.quick_form(comment_form)}}
+        {% endif %}
+        <h3>Comments</h3>
+        {{macro.displayComments(comments)}}
+        </div>
 <br>
 
 </div>
-{% endblock %}   
+{% endblock %}
