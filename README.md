@@ -1,12 +1,11 @@
 # PITCH
+
 ## Description
 This is an application that allows a user to submit their one minute pitches and other users will leave comments to give their feedback on them
 ## Author
-<<<<<<< HEAD
-Jliet Koech
-=======
+
 Juliet Koech
->>>>>>> dcacf6059c1f677173141e733bb9badfabfb0be8
+
 
 ## Date made
 29/6/2019
@@ -27,9 +26,6 @@ Juliet Koech
 * Run ./start.py
 * Access the application through localhost:500
 
-
-
-=======
 ## Getting Started
 * You require a minimum python version 3.6 to run the application
 * Clone or download the Repo
@@ -43,7 +39,7 @@ Juliet Koech
 ## creating a virtual environment
 * python3.7 -m venv --without-pip virtual
 * source virtual/bin/activate
->>>>>>> dcacf6059c1f677173141e733bb9badfabfb0be8
+
 
 # BDD
 
