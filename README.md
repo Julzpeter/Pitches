@@ -1,6 +1,11 @@
 # PITCH
 ## Description
 This is an application that allows a user to submit their one minute pitches and other users will leave comments to give their feedback on them
+## Author
+Juliet Koech
+
+## Date made
+29/6/2019
 
 ## Features
 * User can register or login if he h/she had not
@@ -8,12 +13,18 @@ This is an application that allows a user to submit their one minute pitches and
 * User can log out when done
 
 ## Getting Started
+* You require a minimum python version 3.6 to run the application
 * Clone or download the Repo
 * Read the specs and requirements files and Install all the requirements.
 * Edit the start.sh file with your api key from the news.org website
 * Run chmod a+x start.py
 * Run ./start.py
 * Access the application through localhost:5000
+* Deploying to heroku make sure you have requirements.txt
+
+## creating a virtual environment
+* python3.7 -m venv --without-pip virtual
+* source virtual/bin/activate
 
 # BDD
 
